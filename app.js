@@ -7,12 +7,15 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect(
-  'mongodb + srv://eldar2malkic:' + process.env.MONGO_ATLAS_PW + '@node-rest-api.p7l5r0p.mongodb.net/?retryWrites=true&w=majority',
-  {
-    useMongoClient: true
-  }
-);
+const mongoURI = 
+"mongodb+srv://eldar2malkic:StrongPassword@node-rest-api.p7l5r0p.mongodb.net/?retryWrites=true&w=majority";
+
+mongoose.set('strictQuery', false);
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+  });
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
